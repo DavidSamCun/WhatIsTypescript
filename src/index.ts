@@ -56,18 +56,37 @@ form.onsubmit = () => {
   async function getDefinition(url: string){
     const response = await fetch(url);
     const data = await response.json();
+
     const{word} = data[0]
-    const{meanings} = data[0]
-    const{partOfSpeech} = data[0].meanings[0];
-    const{definition} = data[0].meanings[0].definitions[1]
-    console.log(data);
-    console.log(data[0]);
     console.log(word);
+  
+
+    const{meanings} = data[0]
     console.log(meanings);
+
+    const{partOfSpeech} = data[0].meanings[0];
+
+
+    const{definition} = data[0].meanings[0].definitions[0]
     console.log(definition);
+  
+    console.log("Misc Stuff");
+    console.log(data);
+    console.log(data[0].meanings[0].definitions[0].definition);
+  
+    const def2 = data[0].meanings[0].definitions[1].definition
+
+    let definitions = ''; //make a list next
+
+    const syn1 = data[0].meanings[0].synonyms[0]
+
+    const syn2 = data[0].meanings[0].synonyms[1]
+
     document.getElementById('wor')!.textContent = word;
     document.getElementById('def1')!.textContent = definition;
-    //document.getElementById('def2')!.textContent = def2;
+    document.getElementById('def2')!.textContent = def2;
+    document.getElementById('syn1')!.textContent = syn1;
+    document.getElementById('syn2')!.textContent = syn2;
     return data;
   }
 
